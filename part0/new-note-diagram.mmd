@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    Note over User, Browser: User types a new note into the input field
+
+    User->>Browser: Clicks "Save" button on the form
+
+    Browser->>Server: POST /exampleapp/new_note\n{ content: "User's note" }
+    activate Server
+    Note right of Server: Server processes the note and saves it to the JSON file
+    Server-->>Browser: HTTP 302 Redirect to /exampleapp/notes
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/notes
+    activate Server
+    Server-->>Browser: HTML page with note rendering logic
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/data.json
+    activate Server
+    Server-->>Browser: Updated JSON with the new note
+    deactivate Server
+
+    Note right of Browser: Browser renders the updated list of notes

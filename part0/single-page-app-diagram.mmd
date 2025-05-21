@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET /exampleapp/notes
+    activate Server
+    Server-->>Browser: HTML shell (SPA entry point)
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/main.css
+    activate Server
+    Server-->>Browser: CSS file
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/main.js
+    activate Server
+    Server-->>Browser: JavaScript SPA logic
+    deactivate Server
+
+    Note right of Browser: JS initializes SPA, loads UI and attaches event listeners
+
+    Browser->>Server: GET /exampleapp/data.json
+    activate Server
+    Server-->>Browser: JSON note data
+    deactivate Server
+
+    Note right of Browser: Browser renders notes using JavaScript 

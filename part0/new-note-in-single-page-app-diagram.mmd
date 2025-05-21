@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    Note over User, Browser: User types "new note testing" in the input field
+
+    User->>Browser: Clicks "Save" or "Add Note" button
+
+    Browser->>Server: POST /exampleapp/new_note
+    activate Server
+    Note right of Server: Server saves note to data store (e.g., appends to JSON file)
+    Server-->>Browser: 200 OK (or JSON with saved note)
+    deactivate Server
+
+    Note right of Browser: JavaScript updates in-memory notes list
+
+
+    Note right of Browser: JavaScript re-renders the notes list\nThe document is updated with the new note: "new note testing
