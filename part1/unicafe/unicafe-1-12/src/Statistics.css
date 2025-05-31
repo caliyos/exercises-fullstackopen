@@ -1,0 +1,9 @@
+/* Statistics.css */
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 70px;
+}
